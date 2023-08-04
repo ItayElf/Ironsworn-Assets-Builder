@@ -37,7 +37,7 @@ def main() -> None:
     """
     The main function
     """
-    context = Context()
+    context = Context(rtl=True)
 
     with context.tag("html"):
         render_head(context)
