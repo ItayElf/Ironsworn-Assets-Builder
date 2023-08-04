@@ -16,8 +16,7 @@ class Asset:
     name: str
     type: str
     abilities: List[AssetAbility]
-    write_in: Optional[str] = field(default=None)
-    second_write_in: Optional[str] = field(default=None)
+    write_ins: Optional[List[str]] = field(default=None)
     description: Optional[str] = field(default=None)
     icon_path: Optional[str] = field(default=None)
     track: Optional[Union[int, List[str]]] = field(default=None)
