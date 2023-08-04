@@ -19,7 +19,8 @@ ASSET = Asset(
         AssetAbility("Long " + "AAAA " * 30)
     ],
     write_ins=["First", "Second"],
-    description="Test description"
+    description="Test description",
+    track=4
 )
 
 

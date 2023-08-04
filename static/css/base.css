@@ -72,6 +72,10 @@
   background-image: url("../static/svg/background.svg");
   background-repeat: no-repeat;
   background-size: 375px 525px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .asset-type {
@@ -155,4 +159,40 @@
 
 .asset-ability-name::after {
   content: ":\00a0";
+}
+
+.asset-track {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0.85em;
+  color: #414042;
+  width: 87%;
+  align-self: center;
+  font-family: Simonetta;
+  font-size: 1.42em;
+}
+
+.asset-track-value {
+  width: 100%;
+  height: 1.7em;
+  border: 0.1em solid #414042;
+  border-left-width: 0.05em;
+  font-weight: bolder;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.asset-track-value:first-child {
+  border-left: 0.1em solid #414042;
+}
+
+.asset-track-value.asset-track-text {
+  padding: 0.7em;
+  text-align: center;
+}
+
+.asset-track-value img {
+  width: 100%;
+  height: auto;
 }
