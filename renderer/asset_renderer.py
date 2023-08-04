@@ -24,6 +24,12 @@ def render_top_area(context: Context, asset: Asset):
         with context.tag("div", ("class", "asset-name")):
             context.text(asset.name)
 
+        if asset.icon_path:
+            with context.tag("div", style="position: relative;"):
+                with context.tag("div", ("class", "asset-icon")):
+                    with context.tag("img", src=asset.icon_path):
+                        pass
+
         if asset.write_ins:
             with context.tag("div", ("class", "asset-write_ins")):
                 for write_in in asset.write_ins:

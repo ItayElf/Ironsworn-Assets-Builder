@@ -13,7 +13,8 @@ ASSET = Asset(
     "Ironclad",
     "PATH",
     [],
-    write_ins=["First", "Second"]
+    write_ins=["First", "Second"],
+    icon_path="../static/svg/Vector.svg"
 )
 
 
