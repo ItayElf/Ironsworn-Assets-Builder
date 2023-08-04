@@ -11,15 +11,15 @@ from render.asset_renderer.renderer import render_asset
 OUTPUT_FILE = pathlib.Path("build", "output.html")
 
 ASSET = Asset(
-    "Ironclad",
-    "PATH",
+    "לוחם חרב",
+    "נתיב",
     [
-        AssetAbility("this is the text", "Titled", True),
-        AssetAbility("Short"),
-        AssetAbility("Long " + "AAAA " * 30)
+        AssetAbility("זה הטקסט פה יש מילים", "כותרת", True),
+        AssetAbility("קצר"),
+        AssetAbility("ארוך " + "ארוך " * 30)
     ],
-    write_ins=["First", "Second"],
-    description="Test description",
+    write_ins=["ראשון", "שני"],
+    description="תיאור בדיקה",
     track=4
 )
 
