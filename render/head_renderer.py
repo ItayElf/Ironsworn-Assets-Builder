@@ -2,7 +2,7 @@
 A file that renders the head of the html
 """
 import pathlib
-from renderer.context import Context
+from render.context import Context
 
 FILE_LOCATION = pathlib.Path(__file__).parent
 BASE_CSS = pathlib.Path(

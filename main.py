@@ -3,9 +3,9 @@ The main file
 """
 import pathlib
 from data_structures.asset import Asset
-from renderer.asset_renderer import render_asset
-from renderer.context import Context
-from renderer.head_renderer import render_head
+from render.context import Context
+from render.head_renderer import render_head
+from render.asset_renderer.renderer import render_asset
 
 OUTPUT_FILE = pathlib.Path("build", "output.html")
 
