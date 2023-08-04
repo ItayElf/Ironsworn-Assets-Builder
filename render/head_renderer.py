@@ -9,9 +9,8 @@ BASE_CSS = pathlib.Path(
     FILE_LOCATION,
     "..",
     "static",
-    "css",
     "base.css"
-).read_text(encoding="utf-8")
+).read_text(encoding="utf-8").replace("\n", "")
 
 
 def add_styles(context: Context):

@@ -22,9 +22,6 @@ def render_asset_number_track(context: Context, max_value: int):
                     context.text("0")
                 elif value > 0:
                     context.text(f"+{value}")
-                else:
-                    with context.tag("img", src="../static/svg/empty.svg"):
-                        pass
 
 
 def render_asset_values_track(context: Context, values: List[str]):
