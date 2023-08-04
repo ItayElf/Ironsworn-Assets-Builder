@@ -10,12 +10,6 @@
   background-size: 375px 525px;
 }
 
-.top-area {
-  text-transform: uppercase;
-  font-weight: 900;
-  font-family: Simonetta;
-}
-
 .asset-type {
   font-family: Simonetta;
   font-size: 1.03em;
@@ -35,7 +29,7 @@
 
 .asset-write_ins {
   text-transform: none;
-  font-size: 0.97em;
+  font-size: 1.2em;
   margin-left: 0.9em;
   margin-right: 0.7em;
 }
