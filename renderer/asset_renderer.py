@@ -30,10 +30,14 @@ def render_top_area(context: Context, asset: Asset):
                     with context.tag("img", src=asset.icon_path):
                         pass
 
-        if asset.write_ins:
+        if asset.write_ins or asset.description:
             with context.tag("div", ("class", "asset-write_ins")):
-                for write_in in asset.write_ins:
-                    render_write_in(context, write_in)
+                if asset.write_ins:
+                    for write_in in asset.write_ins:
+                        render_write_in(context, write_in)
+                if asset.description:
+                    with context.tag("div", ("class", "asset-description")):
+                        context.text(asset.description)
 
 
 def render_asset(context: Context, asset: Asset):

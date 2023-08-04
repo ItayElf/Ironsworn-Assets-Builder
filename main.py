@@ -14,7 +14,7 @@ ASSET = Asset(
     "PATH",
     [],
     write_ins=["First", "Second"],
-    icon_path="../static/svg/Vector.svg"
+    description="Test description"
 )
 
 
