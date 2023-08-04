@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Simonetta&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Bellefair&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=PT+Serif&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 
 .asset-background {
   width: 375px;
@@ -16,4 +16,26 @@
   color: white;
   padding: 0.8em 0 0.3em 0.95em;
   font-weight: 900;
+  text-transform: uppercase;
+}
+
+.asset-name {
+  font-family: Simonetta;
+  font-size: 1.26em;
+  padding: 0.7em 0.7em 0.53em;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.asset-write_ins {
+  font-family: "PT Serif";
+  font-size: 0.97em;
+  margin-left: 0.9em;
+  margin-right: 0.7em;
+}
+
+.asset-write-in {
+  border-bottom: 0.14em solid #414042;
+  margin-right: 0.2em;
+  margin-bottom: 0.71em;
 }

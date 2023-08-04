@@ -10,9 +10,10 @@ from renderer.head_renderer import render_head
 OUTPUT_FILE = pathlib.Path("build", "output.html")
 
 ASSET = Asset(
-    "Test",
+    "Ironclad",
     "PATH",
-    []
+    [],
+    write_ins=["First", "Second"]
 )
 
 
