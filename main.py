@@ -2,10 +2,18 @@
 The main file
 """
 import pathlib
+from data_structures.asset import Asset
+from renderer.asset_renderer import render_asset
 from renderer.context import Context
 from renderer.head_renderer import render_head
 
 OUTPUT_FILE = pathlib.Path("build", "output.html")
+
+ASSET = Asset(
+    "Test",
+    "PATH",
+    []
+)
 
 
 def save_output(content: str):
@@ -25,6 +33,9 @@ def main() -> None:
 
     with context.tag("html"):
         render_head(context)
+
+        with context.tag("body"):
+            render_asset(context, ASSET)
 
     print(context.getvalue())
     save_output(context.getvalue())

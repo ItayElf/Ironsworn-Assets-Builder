@@ -1,3 +1,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Simonetta&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Bellefair&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=PT+Serif&display=swap");
+
+.asset-background {
+  width: 375px;
+  height: 525px;
+  background-image: url("../static/svg/background.svg");
+  background-repeat: no-repeat;
+  background-size: 375px 525px;
+}
+
+.asset-type {
+  font-family: Simonetta;
+  font-size: 1.03em;
+  color: white;
+  padding: 0.8em 0 0.3em 0.95em;
+  font-weight: 900;
+}
