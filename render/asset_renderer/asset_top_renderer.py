@@ -10,7 +10,7 @@ def render_write_in(context: Context, write_in: str):
     Renders an asset write_in
     """
     with context.tag("div", ("class", "asset-write-in")):
-        context.text(write_in + ":")
+        context.text(write_in, ":")
 
 
 def render_write_ins(context: Context, asset: Asset):

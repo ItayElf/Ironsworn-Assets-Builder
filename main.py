@@ -3,6 +3,7 @@ The main file
 """
 import pathlib
 from data_structures.asset import Asset
+from data_structures.asset_ability import AssetAbility
 from render.context import Context
 from render.head_renderer import render_head
 from render.asset_renderer.renderer import render_asset
@@ -12,7 +13,11 @@ OUTPUT_FILE = pathlib.Path("build", "output.html")
 ASSET = Asset(
     "Ironclad",
     "PATH",
-    [],
+    [
+        AssetAbility("this is the text", "Titled", True),
+        AssetAbility("Short"),
+        AssetAbility("Long " + "AAAA " * 30)
+    ],
     write_ins=["First", "Second"],
     description="Test description"
 )
