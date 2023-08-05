@@ -5,27 +5,12 @@ import json
 import pathlib
 
 import click
-from asset_builder.data_structures.asset import Asset
-from asset_builder.data_structures.asset_ability import AssetAbility
 from asset_builder.data_structures.configuration import Configuration
 from asset_builder.render.body_renderer import render_asset_group
 from asset_builder.render.context import Context
 from asset_builder.render.head_renderer import render_head
 
 OUTPUT_FILE = pathlib.Path("build", "output.html")
-
-ASSET = Asset(
-    "לוחם חרב",
-    "נתיב",
-    [
-        AssetAbility("זה *הטקסט* פה יש **מילים**", "כותרת", True),
-        AssetAbility("קצר"),
-        AssetAbility("*ארוך* " + "ארוך " * 30)
-    ],
-    write_ins=["ראשון", "שני"],
-    description="תיאור בדיקה",
-    track=4
-)
 
 
 def load_configuration(filename: str) -> Configuration:
@@ -36,39 +21,31 @@ def load_configuration(filename: str) -> Configuration:
     return Configuration.from_json(data)
 
 
-def save_output(content: str):
+def save_output(filename: str, content: str):
     """
     Saves the output to the output file
     """
-    OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
-    OUTPUT_FILE.touch(exist_ok=True)
-    OUTPUT_FILE.write_text(content, encoding="utf-8")
+    file = pathlib.Path(filename)
+    file.parent.mkdir(parents=True, exist_ok=True)
+    file.touch(exist_ok=True)
+    file.write_text(content, encoding="utf-8")
 
 
-def main() -> None:
+@click.command()
+@click.option('--output', '-o', default=str(OUTPUT_FILE), help='Output file')
+@click.argument('config_file')
+def cli(config_file: str, output: str):
     """
-    The main function
+    A command line tool for creating ironsworn asset cards
     """
-    configuration = load_configuration("example.json")
-    context = Context(**configuration.settings)
+    config = load_configuration(config_file)
+    context = Context(**config.settings)
 
     with context.tag("html"):
         render_head(context)
 
         with context.tag("body"):
-            render_asset_group(context, configuration.assets)
+            render_asset_group(context, config.assets)
 
-    print(context.getvalue())
-    save_output(context.getvalue())
-
-
-@click.command()
-def cli():
-    """
-    The cli function
-    """
-    click.echo("Hello World")
-
-
-if __name__ == "__main__":
-    main()
+    save_output(output, context.getvalue())
+    click.echo(f"Assets built successfully in \"{output}\"")
