@@ -25,8 +25,6 @@ class Asset:
     def from_json(cls, data: Dict[str, Any]) -> "Asset":
         """
         Takes a json object and returns an asset from it
-
-        :param data: a dictionary representing the asset
         """
         if not "abilities" in data:
             raise KeyError(

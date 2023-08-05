@@ -1,9 +1,11 @@
 """
 The main file
 """
+import json
 import pathlib
 from data_structures.asset import Asset
 from data_structures.asset_ability import AssetAbility
+from data_structures.configuration import Configuration
 from render.body_renderer import render_asset_group
 from render.context import Context
 from render.head_renderer import render_head
@@ -24,6 +26,14 @@ ASSET = Asset(
 )
 
 
+def load_configuration(filename: str) -> Configuration:
+    """
+    Returns a configuration object from a file
+    """
+    data = json.loads(pathlib.Path(filename).read_text(encoding="utf-8"))
+    return Configuration.from_json(data)
+
+
 def save_output(content: str):
     """
     Saves the output to the output file
@@ -37,13 +47,14 @@ def main() -> None:
     """
     The main function
     """
-    context = Context(rtl=True)
+    configuration = load_configuration("example.json")
+    context = Context(**configuration.settings)
 
     with context.tag("html"):
         render_head(context)
 
         with context.tag("body"):
-            render_asset_group(context, [ASSET] * 9)
+            render_asset_group(context, configuration.assets)
 
     print(context.getvalue())
     save_output(context.getvalue())
