@@ -72,6 +72,8 @@
   grid-template-columns: repeat(auto-fit, minmax(375px, 1fr));
   gap: 25px;
   margin: auto;
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
 }
 
 .assets-group.rtl {
