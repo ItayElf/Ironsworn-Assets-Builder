@@ -1,22 +1,26 @@
 """
 The main file
 """
+import http
 import json
 import logging
+import os
 import pathlib
 import tempfile
+import webbrowser
 
 import click
-import webbrowser
 
 from asset_builder.data_structures.configuration import Configuration
 from asset_builder.render.body_renderer import render_asset_group
 from asset_builder.render.context import Context
 from asset_builder.render.head_renderer import render_head
-from asset_builder.watch_handler import WatchHandler
+from asset_builder.render.watch_renderer import render_watch_script
+from asset_builder.watch.watch_handler import WatchHandler
+from asset_builder.watch.watch_server import start_server_thread
 
 OUTPUT_FILE = pathlib.Path("build", "output.html")
-TEMP_FILE = pathlib.Path(tempfile.gettempdir(), "output.html")
+TEMP_FILE = pathlib.Path(tempfile.gettempdir(), "assetBuilder", "output.html")
 
 
 def load_configuration(filename: str) -> Configuration:
@@ -49,6 +53,7 @@ def render_html(config_file: str, output_file: str, is_watch=False):
 
         with context.tag("body"):
             render_asset_group(context, config.assets)
+            render_watch_script(context)
 
     save_output(output_file, context.getvalue())
 
@@ -81,10 +86,11 @@ def watch(config_file: str, verbose):
             logging.debug(error)
 
     if verbose:
-        logging.getLogger().setLevel(logging.DEBUG)
+        logging.basicConfig(level=logging.DEBUG)
 
     render_html(config_file, str(TEMP_FILE), is_watch=True)
-    webbrowser.open(str(TEMP_FILE.absolute()))
+    start_server_thread()
+    webbrowser.open("http://localhost:8000/output.html")
     WatchHandler(config_file, on_modify).start_watch()
 
 

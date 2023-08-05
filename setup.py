@@ -6,7 +6,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="assetBuilder",
-    version='0.1.0',
+    version='0.1.1',
     description="Command line tools for generating ironsworn assets",
     author='Itay Ben Haim',
     packages=find_packages(include=['asset_builder', 'asset_builder.*']),
