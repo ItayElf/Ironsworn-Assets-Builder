@@ -1,6 +1,7 @@
 """
 A file for rendering abilities
 """
+import markdown
 from data_structures.asset import Asset
 from data_structures.asset_ability import AssetAbility
 from render.context import Context
@@ -21,7 +22,7 @@ def render_ability(context: Context, ability: AssetAbility):
                 context.text(ability.name)
 
         with context.tag("span", ("class", "asset-ability-text")):
-            context.text(ability.text)
+            context.asis(markdown.markdown(ability.text))
 
 
 def render_asset_abilities(context: Context, asset: Asset):

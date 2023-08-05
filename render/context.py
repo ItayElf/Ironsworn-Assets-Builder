@@ -40,6 +40,12 @@ class Context:
         """
         return self._text(*strings)
 
+    def asis(self, *strings: str):
+        """
+        Adds unescaped html
+        """
+        return self._doc.asis(*strings)
+
     def getvalue(self) -> str:
         """
         Returns the whole document as a single string

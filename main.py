@@ -14,9 +14,9 @@ ASSET = Asset(
     "לוחם חרב",
     "נתיב",
     [
-        AssetAbility("זה הטקסט פה יש מילים", "כותרת", True),
+        AssetAbility("זה *הטקסט* פה יש **מילים**", "כותרת", True),
         AssetAbility("קצר"),
-        AssetAbility("ארוך " + "ארוך " * 30)
+        AssetAbility("*ארוך* " + "ארוך " * 30)
     ],
     write_ins=["ראשון", "שני"],
     description="תיאור בדיקה",

@@ -201,6 +201,10 @@
   content: ":\00a0";
 }
 
+.asset-ability-text p {
+  display: inline;
+}
+
 .asset-track {
   display: flex;
   justify-content: center;
