@@ -5,7 +5,7 @@ A file that holds the configuration dataclass
 from dataclasses import dataclass, field
 from typing import Any, Dict, List
 
-from data_structures.asset import Asset
+from asset_builder.data_structures.asset import Asset
 
 
 @dataclass

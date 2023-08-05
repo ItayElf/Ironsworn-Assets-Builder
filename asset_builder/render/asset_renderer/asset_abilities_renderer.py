@@ -2,9 +2,9 @@
 A file for rendering abilities
 """
 import markdown
-from data_structures.asset import Asset
-from data_structures.asset_ability import AssetAbility
-from render.context import Context
+from asset_builder.data_structures.asset import Asset
+from asset_builder.data_structures.asset_ability import AssetAbility
+from asset_builder.render.context import Context
 
 
 def render_ability(context: Context, ability: AssetAbility):

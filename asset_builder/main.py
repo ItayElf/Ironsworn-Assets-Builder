@@ -3,12 +3,14 @@ The main file
 """
 import json
 import pathlib
-from data_structures.asset import Asset
-from data_structures.asset_ability import AssetAbility
-from data_structures.configuration import Configuration
-from render.body_renderer import render_asset_group
-from render.context import Context
-from render.head_renderer import render_head
+
+import click
+from asset_builder.data_structures.asset import Asset
+from asset_builder.data_structures.asset_ability import AssetAbility
+from asset_builder.data_structures.configuration import Configuration
+from asset_builder.render.body_renderer import render_asset_group
+from asset_builder.render.context import Context
+from asset_builder.render.head_renderer import render_head
 
 OUTPUT_FILE = pathlib.Path("build", "output.html")
 
@@ -58,6 +60,14 @@ def main() -> None:
 
     print(context.getvalue())
     save_output(context.getvalue())
+
+
+@click.command()
+def cli():
+    """
+    The cli function
+    """
+    click.echo("Hello World")
 
 
 if __name__ == "__main__":

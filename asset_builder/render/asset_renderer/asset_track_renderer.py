@@ -2,8 +2,8 @@
 A file for rendering the asset track
 """
 from typing import List
-from data_structures.asset import Asset
-from render.context import Context
+from asset_builder.data_structures.asset import Asset
+from asset_builder.render.context import Context
 
 
 def render_asset_number_track(context: Context, max_value: int):

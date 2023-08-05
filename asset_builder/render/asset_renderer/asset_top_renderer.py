@@ -1,8 +1,8 @@
 """
 A file for rendering the top of the asset
 """
-from data_structures.asset import Asset
-from render.context import Context
+from asset_builder.data_structures.asset import Asset
+from asset_builder.render.context import Context
 
 
 def render_write_in(context: Context, write_in: str):

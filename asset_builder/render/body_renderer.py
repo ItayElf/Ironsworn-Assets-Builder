@@ -3,9 +3,9 @@ A file to render the body of the page
 """
 
 from typing import List
-from data_structures.asset import Asset
-from render.asset_renderer.renderer import render_asset
-from render.context import Context
+from asset_builder.data_structures.asset import Asset
+from asset_builder.render.asset_renderer.renderer import render_asset
+from asset_builder.render.context import Context
 
 
 def render_asset_group(context: Context, assets: List[Asset]):
