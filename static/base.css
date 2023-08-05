@@ -66,6 +66,18 @@
     U+2215, U+FEFF, U+FFFD;
 }
 
+.assets-group {
+  max-width: calc(400px * 4);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(375px, 1fr));
+  gap: 25px;
+  margin: auto;
+}
+
+.assets-group.rtl {
+  direction: rtl;
+}
+
 .asset-background {
   width: 375px;
   height: 525px;

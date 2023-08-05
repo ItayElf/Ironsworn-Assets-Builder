@@ -4,9 +4,9 @@ The main file
 import pathlib
 from data_structures.asset import Asset
 from data_structures.asset_ability import AssetAbility
+from render.body_renderer import render_asset_group
 from render.context import Context
 from render.head_renderer import render_head
-from render.asset_renderer.renderer import render_asset
 
 OUTPUT_FILE = pathlib.Path("build", "output.html")
 
@@ -43,7 +43,7 @@ def main() -> None:
         render_head(context)
 
         with context.tag("body"):
-            render_asset(context, ASSET)
+            render_asset_group(context, [ASSET] * 9)
 
     print(context.getvalue())
     save_output(context.getvalue())
