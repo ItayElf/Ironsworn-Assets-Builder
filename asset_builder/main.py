@@ -33,6 +33,22 @@ def save_output(filename: str, content: str):
     file.write_text(content, encoding="utf-8")
 
 
+def render_html(config_file: str, output_file: str):
+    """
+    Renders the content from the configuration
+    """
+    config = load_configuration(config_file)
+    context = Context(**config.settings, is_watch=True)
+
+    with context.tag("html"):
+        render_head(context)
+
+        with context.tag("body"):
+            render_asset_group(context, config.assets)
+
+    save_output(output_file, context.getvalue())
+
+
 @click.group()
 def cli():
     """
@@ -46,17 +62,7 @@ def watch(config_file: str):
     """
     Watched the changes and renders them
     """
-    config = load_configuration(config_file)
-    context = Context(**config.settings, is_watch=True)
-
-    with context.tag("html"):
-        render_head(context)
-
-        with context.tag("body"):
-            render_asset_group(context, config.assets)
-
-    save_output(str(TEMP_FILE), context.getvalue())
-    click.echo(f"Assets built successfully in \"{TEMP_FILE}\"")
+    render_html(config_file, str(TEMP_FILE))
 
 
 @cli.command()
@@ -66,14 +72,5 @@ def build(config_file: str, output: str):
     """
     Builds the asset cards
     """
-    config = load_configuration(config_file)
-    context = Context(**config.settings)
-
-    with context.tag("html"):
-        render_head(context)
-
-        with context.tag("body"):
-            render_asset_group(context, config.assets)
-
-    save_output(output, context.getvalue())
+    render_html(config_file, output)
     click.echo(f"Assets built successfully in \"{output}\"")
