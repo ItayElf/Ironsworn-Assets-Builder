@@ -17,12 +17,13 @@ def render_ability(context: Context, ability: AssetAbility):
         with context.tag("i", ("class", dot_classname)):
             pass
 
-        if ability.name:
-            with context.tag("span", ("class", "asset-ability-name")):
-                context.text(ability.name)
+        with context.tag("div", ("class", "asset-ability-description")):
+            if ability.name:
+                with context.tag("span", ("class", "asset-ability-name")):
+                    context.text(ability.name)
 
-        with context.tag("span", ("class", "asset-ability-text")):
-            context.asis(markdown.markdown(ability.text))
+            with context.tag("span", ("class", "asset-ability-text")):
+                context.asis(markdown.markdown(ability.text))
 
 
 def render_asset_abilities(context: Context, asset: Asset):

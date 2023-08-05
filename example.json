@@ -1,25 +1,63 @@
 {
   "settings": {
-    "rtl": true
+    "rtl": false
   },
   "assets": [
     {
-      "name": "לוחם חרב",
-      "type": "נתיב",
+      "name": "Outcast",
+      "type": "Path",
       "abilities": [
         {
-          "text": "זה *הטקסט* פה יש **מילים**",
-          "name": "כותרת",
+          "text": "When your supply is reduced to 0, suffer any remaining -supply as -momentum. Then, roll +wits. On a strong hit, you manage to scrape by and take +1 supply. On a weak hit, you may suffer -2 momentum in exchange for +1 supply. On a miss, you are *Out of Supply*.",
           "enabled": true
         },
-        { "text": "קצר" },
         {
-          "text": "*ארוך* ארוך ארוך ארוך ארוך ארוך ארוך ארוך ארוך ארוך ארוך ארוך ארוך ארוך ארוך ארוך ארוך ארוך ארוך ארוך ארוך ארוך ארוך ארוך ארוך ארוך ארוך ארוך ארוך ארוך ארוך "
+          "text": "When you *Sojourn*, you may reroll any dice. If you do (decide before your first roll), your needs are few, but your isolation sets you apart from others. A strong hit counts as a weak hit."
+        },
+        {
+          "text": "When you *Reach Your Destination* and score a strong hit, you recall or recognize something helpful about this place. Envision what it is, and take +2 momentum."
         }
       ],
-      "write_ins": ["ראשון", "שני"],
-      "description": "תיאור בדיקה",
-      "track": 4
+      "icon_path": "data:image/svg+xml,%3Csvg class='Icon' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' style='height: 512px; width: 512px;'%3E%3Cpath d='M0 0h512v512H0z' fill='%23000000' fill-opacity='0.01'%3E%3C/path%3E%3Cg class='' transform='translate(0,0)' style=''%3E%3Cpath d='M255.78 21C128.098 21 23.47 125.628 23.47 253.313c0 127.685 104.627 230.78 232.31 230.78 127.685 0 230.782-103.095 230.782-230.78S383.466 21 255.782 21zm-1.06 82l117.374 117.97-23.938 25.093-65.406-37.938v172.47c79.295-13.13 139.78-81.987 139.78-165 0-39.265-13.54-75.368-36.186-103.907 37.702 35.365 61.22 85.81 61.22 141.625-.002 106.395-85.385 191.78-191.783 191.78-106.398 0-193.31-85.385-193.31-191.78 0-55.123 23.342-105.018 60.624-140.313-22.028 28.33-35.156 63.928-35.156 102.594 0 82.46 59.645 150.973 138.156 164.75v-168.72l-62.5 35.626-25.094-26.28L254.72 103z' fill='white' fill-opacity='1'%3E%3C/path%3E%3C/g%3E%3C/svg%3E"
+    },
+    {
+      "name": "Hawk",
+      "type": "Companion",
+      "write_ins": ["Name"],
+      "description": "Your hawk can aid you while it is aloft.",
+      "abilities": [
+        {
+          "name": "Far-seeing",
+          "text": "When you *Undertake a Journey*, or when you *Resupply* by hunting for small game, add +1."
+        },
+        {
+          "name": "Fierce",
+          "text": "When you *Secure an Advantage* +edge using your hawk to harass and distract your foes, add +1 and take +1 momentum on a hit."
+        },
+        {
+          "name": "Vigilant",
+          "text": "When you *Face Danger* +wits to detect an approaching threat, or when you *Enter the Fray* +wits against an ambush, add +2."
+        }
+      ],
+      "track": 3
+    },
+    {
+      "name": "Ironclad",
+      "type": "Combat Talent",
+      "description": "If you wear armor...",
+      "abilities": [
+        {
+          "text": "When you equip or adjust your armor, choose one.\n\n  * **Lightly armored:** When you *Endure Harm* in a fight, add +1 and take +1 momentum on a hit.\n  * **Geared for war:** Mark encumbered. When you *Endure Harm* in a fight, add +2 and take +1 momentum on a hit.",
+          "enabled": true
+        },
+        {
+          "text": "When you *Clash* while you are geared for war, add +1."
+        },
+        {
+          "text": "When you *Compel* in a situation where strength of arms is a factor, add +2."
+        }
+      ],
+      "track": ["Lightly Armoured", "Geared For War"]
     }
   ]
 }

@@ -42,5 +42,5 @@ def render_asset_track(context: Context, asset: Asset):
         return render_asset_number_track(context, asset.track)
     elif isinstance(asset.track, list):
         return render_asset_values_track(context, asset.track)
-
-    raise ValueError(f"Invalid value for track: {repr(asset.track)}")
+    elif asset.track is not None:
+        raise ValueError(f"Invalid value for track: {repr(asset.track)}")

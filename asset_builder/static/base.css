@@ -66,6 +66,12 @@
     U+2215, U+FEFF, U+FFFD;
 }
 
+ul {
+  margin-block-start: 0;
+  margin-block-end: 0;
+  padding-inline-start: 1.3em;
+}
+
 .assets-group {
   max-width: calc(400px * 4);
   display: grid;
@@ -188,6 +194,7 @@
 .asset-ability {
   display: flex;
   line-height: 1.36em;
+  margin-bottom: 0.25em;
 }
 
 .dot {

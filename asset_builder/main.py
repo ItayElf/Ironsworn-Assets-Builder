@@ -2,6 +2,7 @@
 The main file
 """
 import json
+import logging
 import pathlib
 import tempfile
 
@@ -36,12 +37,12 @@ def save_output(filename: str, content: str):
     file.write_text(content, encoding="utf-8")
 
 
-def render_html(config_file: str, output_file: str):
+def render_html(config_file: str, output_file: str, is_watch=False):
     """
     Renders the content from the configuration
     """
     config = load_configuration(config_file)
-    context = Context(**config.settings, is_watch=True)
+    context = Context(**config.settings, is_watch=is_watch)
 
     with context.tag("html"):
         render_head(context)
@@ -60,17 +61,31 @@ def cli():
 
 
 @cli.command()
+@click.option('--verbose', '-v', is_flag=True, help='Shows errors that might occur and are ignored')
 @click.argument('config_file')
-def watch(config_file: str):
+def watch(config_file: str, verbose):
     """
     Watched the changes and renders them
     """
-    render_html(config_file, str(TEMP_FILE))
+    def on_modify(*_):
+        try:
+            render_html(config_file, str(TEMP_FILE), is_watch=True)
+
+        # Catching errors that might occur while trying to build
+        # invalid config due to real time editing
+        except json.JSONDecodeError as error:
+            logging.debug(error)
+        except TypeError as error:
+            logging.debug(error)
+        except KeyError as error:
+            logging.debug(error)
+
+    if verbose:
+        logging.getLogger().setLevel(logging.DEBUG)
+
+    render_html(config_file, str(TEMP_FILE), is_watch=True)
     webbrowser.open(str(TEMP_FILE.absolute()))
-    WatchHandler(
-        config_file,
-        lambda _: render_html(config_file, str(TEMP_FILE))
-    ).start_watch()
+    WatchHandler(config_file, on_modify).start_watch()
 
 
 @cli.command()
