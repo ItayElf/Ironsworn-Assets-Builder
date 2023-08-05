@@ -6,10 +6,13 @@ import pathlib
 import tempfile
 
 import click
+import webbrowser
+
 from asset_builder.data_structures.configuration import Configuration
 from asset_builder.render.body_renderer import render_asset_group
 from asset_builder.render.context import Context
 from asset_builder.render.head_renderer import render_head
+from asset_builder.watch_handler import WatchHandler
 
 OUTPUT_FILE = pathlib.Path("build", "output.html")
 TEMP_FILE = pathlib.Path(tempfile.gettempdir(), "output.html")
@@ -63,6 +66,11 @@ def watch(config_file: str):
     Watched the changes and renders them
     """
     render_html(config_file, str(TEMP_FILE))
+    webbrowser.open(str(TEMP_FILE.absolute()))
+    WatchHandler(
+        config_file,
+        lambda _: render_html(config_file, str(TEMP_FILE))
+    ).start_watch()
 
 
 @cli.command()
