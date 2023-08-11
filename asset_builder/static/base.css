@@ -177,6 +177,10 @@ ul {
   margin-bottom: 0.28em;
 }
 
+.asset-description p {
+  display: inline;
+}
+
 .asset-abilities {
   font-family: "PT Serif", serif;
   font-size: 1.07em;

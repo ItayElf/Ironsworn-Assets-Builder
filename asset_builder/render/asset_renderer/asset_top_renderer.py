@@ -1,6 +1,7 @@
 """
 A file for rendering the top of the asset
 """
+import markdown
 from asset_builder.data_structures.asset import Asset
 from asset_builder.render.context import Context
 
@@ -28,7 +29,7 @@ def render_asset_description(context: Context, asset: Asset):
     """
     if asset.description:
         with context.tag("div", ("class", "asset-description")):
-            context.text(asset.description)
+            context.asis(markdown.markdown(asset.description))
 
 
 def render_top_panel(context: Context, asset: Asset):
