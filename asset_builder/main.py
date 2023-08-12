@@ -14,6 +14,7 @@ from asset_builder.render.body_renderer import render_asset_group
 from asset_builder.render.context import Context
 from asset_builder.render.head_renderer import render_head
 from asset_builder.render.images_renderer import render_images
+from asset_builder.render.pdf_renderer import render_pdf
 from asset_builder.render.watch_renderer import render_watch_script
 from asset_builder.watch.watch_handler import WatchHandler
 from asset_builder.watch.watch_server import start_server_thread
@@ -22,6 +23,8 @@ HTML_OUTPUT_FILE = pathlib.Path("build", "output.html")
 HTML_TEMP_FILE = pathlib.Path(
     tempfile.gettempdir(), "assetBuilder", "output.html")
 PNG_OUTPUT_DIR = pathlib.Path("build", "assets")
+PNG_TEMP_DIR = pathlib.Path(tempfile.gettempdir(), "assetBuilder", "assets")
+PDF_OUTPUT_FILE = pathlib.Path("build", "output.pdf")
 
 
 def load_configuration(filename: str) -> Configuration:
@@ -38,8 +41,10 @@ def get_output_file(file_type: str):
     """
     if file_type == "html":
         return str(HTML_OUTPUT_FILE)
-    elif file_type == "png":
+    if file_type == "png":
         return str(PNG_OUTPUT_DIR)
+    if file_type == "pdf":
+        return str(PDF_OUTPUT_FILE)
 
     raise ValueError(f"No default file for type {file_type}")
 
@@ -111,7 +116,7 @@ def watch(config_file: str, verbose):
 
 @cli.command()
 @click.option('--output', '-o', default="", help='Output file (output directory for png)')
-@click.option("--file-type", "-t", default="html", type=click.Choice(["html", "png"], case_sensitive=False))
+@click.option("--file-type", "-t", default="html", type=click.Choice(["html", "png", "pdf"], case_sensitive=False))
 @click.argument('config_file')
 def build(config_file: str, output: str, file_type: str):
     """
@@ -125,5 +130,8 @@ def build(config_file: str, output: str, file_type: str):
         render_html(config, output)
     elif file_type == "png":
         render_images(config, output)
+    elif file_type == "pdf":
+        render_images(config, str(PNG_TEMP_DIR))
+        render_pdf(config, str(PNG_TEMP_DIR), output)
 
     click.echo(f"Assets built successfully in \"{output}\"")

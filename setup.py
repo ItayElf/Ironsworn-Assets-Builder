@@ -14,6 +14,7 @@ setup(
         "click==8.1.6",
         "colorama==0.4.6",
         "html2image==2.0.3",
+        "reportlab==4.0.4",
         "Markdown==3.4.4",
         "yattag==1.15.1"
     ],
