@@ -16,7 +16,7 @@ SERVER_DIRECTORY = pathlib.Path(tempfile.gettempdir(), "assetBuilder")
 
 
 class LoglessServer(SimpleHTTPRequestHandler):
-    def log_message(self, format: str, *args: Any) -> None:
+    def log_message(self, *args: Any) -> None:
         return
 
 

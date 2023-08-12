@@ -13,6 +13,5 @@ def render_watch_script(context: Context):
     """
     Renders js script is watch is active
     """
-    if context.is_watch:
-        with context.tag("script"):
-            context.asis(JS_SCRIPT)
+    with context.tag("script"):
+        context.asis(JS_SCRIPT)

@@ -1,10 +1,8 @@
 """
 The main file
 """
-import http
 import json
 import logging
-import os
 import pathlib
 import tempfile
 import webbrowser
@@ -53,7 +51,8 @@ def render_html(config_file: str, output_file: str, is_watch=False):
 
         with context.tag("body"):
             render_asset_group(context, config.assets)
-            render_watch_script(context)
+            if context.is_watch:
+                render_watch_script(context)
 
     save_output(output_file, context.getvalue())
 
