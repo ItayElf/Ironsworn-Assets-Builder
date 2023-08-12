@@ -13,7 +13,7 @@ from asset_builder.render.context import Context
 from asset_builder.render.head_renderer import render_head
 
 IMAGE_CSS = "body {background: white;margin: 0;}"
-ASSET_SIZE = (375, 525)
+ASSET_SIZE = (375, 575)
 
 
 def get_asset_context(config: Configuration, asset: Asset) -> Context:
