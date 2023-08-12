@@ -3,6 +3,7 @@ A file for rendering images of assets
 """
 
 
+import click
 from html2image import Html2Image
 from asset_builder.data_structures.asset import Asset
 from asset_builder.data_structures.configuration import Configuration
@@ -45,26 +46,42 @@ def get_back_context(config: Configuration, asset_type: str) -> Context:
     return context
 
 
+def render_assets_images(config: Configuration, hti: Html2Image):
+    """
+    Renders images for assets
+    """
+    with click.progressbar(config.assets, label="Rendering assets") as progress_bar:
+        for asset in progress_bar:
+            context = get_asset_context(config, asset)
+            hti.screenshot(
+                html_str=context.getvalue(),
+                css_str=IMAGE_CSS,
+                save_as=f"{asset.name}.png",
+                size=ASSET_SIZE
+            )
+
+
+def render_assets_backs(config: Configuration, hti: Html2Image):
+    """
+    Renders backs for assets
+    """
+    asset_types = set(asset.type for asset in config.assets)
+    with click.progressbar(asset_types, label="Rendering asset backs") as progress_bar:
+        for asset_type in progress_bar:
+            context = get_back_context(config, asset_type)
+            hti.screenshot(
+                html_str=context.getvalue(),
+                css_str=IMAGE_CSS,
+                save_as=f"{asset_type}.png",
+                size=ASSET_SIZE
+            )
+
+
 def render_images(config: Configuration, output_dir: str):
     """
     Saves assets as images
     """
     hti = Html2Image(output_path=output_dir)
 
-    for asset in config.assets:
-        context = get_asset_context(config, asset)
-        hti.screenshot(
-            html_str=context.getvalue(),
-            css_str=IMAGE_CSS,
-            save_as=f"{asset.name}.png",
-            size=ASSET_SIZE
-        )
-
-    for asset_type in set(asset.type for asset in config.assets):
-        context = get_back_context(config, asset_type)
-        hti.screenshot(
-            html_str=context.getvalue(),
-            css_str=IMAGE_CSS,
-            save_as=f"{asset_type}.png",
-            size=ASSET_SIZE
-        )
+    render_assets_images(config, hti)
+    render_assets_backs(config, hti)
