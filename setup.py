@@ -13,6 +13,7 @@ setup(
     install_requires=[
         "click==8.1.6",
         "colorama==0.4.6",
+        "html2image==2.0.3",
         "Markdown==3.4.4",
         "yattag==1.15.1"
     ],
