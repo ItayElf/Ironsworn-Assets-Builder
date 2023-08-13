@@ -131,7 +131,7 @@ def build(config_file: str, output: str, file_type: str):
     elif file_type == "png":
         render_images(config, output)
     elif file_type == "pdf":
-        render_images(config, str(PNG_TEMP_DIR))
+        render_images(config, str(PNG_TEMP_DIR), for_pdf=True)
         render_pdf(config, str(PNG_TEMP_DIR), output)
 
     click.echo(f"Assets built successfully in \"{output}\"")
