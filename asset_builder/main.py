@@ -94,6 +94,7 @@ def watch(config_file: str, verbose):
 
     def on_modify(*_):
         try:
+            config = load_configuration(config_file)
             render_html(config, str(HTML_TEMP_FILE), is_watch=True)
 
         # Catching errors that might occur while trying to build
@@ -135,3 +136,7 @@ def build(config_file: str, output: str, file_type: str):
         render_pdf(config, str(PNG_TEMP_DIR), output)
 
     click.echo(f"Assets built successfully in \"{output}\"")
+
+
+if __name__ == "__main__":
+    cli()
