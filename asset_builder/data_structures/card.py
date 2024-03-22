@@ -4,12 +4,13 @@ A file for the generic card class
 
 import abc
 from dataclasses import dataclass
+from typing import Any, Dict
 
 from asset_builder.data_structures.card_types import CardType
 
 
 @dataclass
-class Card():
+class Card:
     """
     An abstract class that represents a generic card that can be rendered
     """
@@ -30,3 +31,10 @@ class Card():
         """
         Renders the back of the card and returns the HTML representation
         """
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> "Card":
+        """
+        Returns a card object from a dict
+        """
+        return cls(**data)
