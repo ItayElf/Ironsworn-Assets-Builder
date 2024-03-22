@@ -9,9 +9,10 @@ class Context:
     A class that represents the render context
     """
 
-    def __init__(self, rtl=False, is_watch=False) -> None:
+    def __init__(self, rtl=False, is_watch=False, title="Ironsworn") -> None:
         self._rtl = rtl
         self._is_watch = is_watch
+        self._title = title
         self._doc, self._tag, self._text = Doc().tagtext()
 
     def _set_rtl(self, *args) -> list:
@@ -59,3 +60,10 @@ class Context:
         Returns if the current context is watched
         """
         return self._is_watch
+
+    @property
+    def title(self) -> str:
+        """
+        Returns if the title
+        """
+        return self._title

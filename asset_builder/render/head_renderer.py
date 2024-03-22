@@ -28,6 +28,5 @@ def render_head(context: Context):
     with context.tag("head"):
         add_styles(context)
 
-        if context.is_watch:
-            with context.tag("meta", ("http-equiv", "refresh"), content="1"):
-                pass
+        with context.tag("meta", charset="utf-8"):
+            pass
