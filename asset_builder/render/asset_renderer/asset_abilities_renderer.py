@@ -2,7 +2,7 @@
 A file for rendering abilities
 """
 import markdown
-from asset_builder.data_structures.asset_card.asset import Asset
+from asset_builder.data_structures.asset_card.asset import AssetCard
 from asset_builder.data_structures.asset_card.asset_ability import AssetAbility
 from asset_builder.render.context import Context
 
@@ -26,7 +26,7 @@ def render_ability(context: Context, ability: AssetAbility):
                 context.asis(markdown.markdown(ability.text))
 
 
-def render_asset_abilities(context: Context, asset: Asset):
+def render_asset_abilities(context: Context, asset: AssetCard):
     """
     Renders the abilities of the asset
     """

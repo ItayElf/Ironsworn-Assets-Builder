@@ -6,7 +6,7 @@ from typing import List
 from reportlab.pdfgen.canvas import Canvas
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import mm
-from asset_builder.data_structures.asset_card.asset import Asset
+from asset_builder.data_structures.asset_card.asset import AssetCard
 
 from asset_builder.data_structures.configuration import Configuration
 
@@ -26,7 +26,7 @@ POSITIONS = [
 ]
 
 
-def render_asset_page(canvas: Canvas, assets: List[Asset], images_dir: str):
+def render_asset_page(canvas: Canvas, assets: List[AssetCard], images_dir: str):
     """
     Renders a page of asset cards
     """
@@ -39,7 +39,7 @@ def render_asset_page(canvas: Canvas, assets: List[Asset], images_dir: str):
     canvas.showPage()
 
 
-def render_asset_backs(canvas: Canvas, assets: List[Asset], images_dir: str):
+def render_asset_backs(canvas: Canvas, assets: List[AssetCard], images_dir: str):
     """
     Renders card backs
     """

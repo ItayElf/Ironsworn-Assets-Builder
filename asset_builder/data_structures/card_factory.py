@@ -3,7 +3,7 @@ A file for matching the correct card type to its appropriate class
 """
 
 from typing import Any, Dict
-from asset_builder.data_structures.asset_card.asset import Asset
+from asset_builder.data_structures.asset_card.asset import AssetCard
 
 from asset_builder.data_structures.card import Card
 from asset_builder.data_structures.card_types import CardType
@@ -30,6 +30,6 @@ def get_card_by_type(card_data: Dict[str, Any]) -> Card:
     """
     card_type = _get_card_type(card_data)
     if card_type == CardType.ASSET:
-        return Asset.from_dict(card_data)
+        return AssetCard.from_dict(card_data)
 
     raise KeyError(f"No renderers for card type {card_type}")

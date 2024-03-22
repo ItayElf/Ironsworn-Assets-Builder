@@ -2,7 +2,7 @@
 A file for rendering the asset track
 """
 from typing import List
-from asset_builder.data_structures.asset_card.asset import Asset
+from asset_builder.data_structures.asset_card.asset import AssetCard
 from asset_builder.render.context import Context
 
 
@@ -35,7 +35,7 @@ def render_asset_values_track(context: Context, values: List[str]):
                 context.text(value)
 
 
-def render_asset_track(context: Context, asset: Asset):
+def render_asset_track(context: Context, asset: AssetCard):
     """
     Renders the asset track, if has any
     """

@@ -5,7 +5,7 @@ A file for rendering images of assets
 
 import click
 from html2image import Html2Image
-from asset_builder.data_structures.asset_card.asset import Asset
+from asset_builder.data_structures.asset_card.asset import AssetCard
 from asset_builder.data_structures.configuration import Configuration
 from asset_builder.render.asset_renderer.asset_back_renderer import render_asset_back
 from asset_builder.render.asset_renderer.renderer import render_asset
@@ -16,7 +16,7 @@ IMAGE_CSS = "body {background: white;margin: 0;}"
 ASSET_SIZE = (375, 575)
 
 
-def get_asset_context(config: Configuration, asset: Asset) -> Context:
+def get_asset_context(config: Configuration, asset: AssetCard) -> Context:
     """
     Returns the context of an asset card
     """

@@ -2,7 +2,7 @@
 A file for rendering the top of the asset
 """
 import markdown
-from asset_builder.data_structures.asset_card.asset import Asset
+from asset_builder.data_structures.asset_card.asset import AssetCard
 from asset_builder.render.context import Context
 
 
@@ -14,7 +14,7 @@ def render_write_in(context: Context, write_in: str):
         context.text(write_in, ":")
 
 
-def render_write_ins(context: Context, asset: Asset):
+def render_write_ins(context: Context, asset: AssetCard):
     """
     Renders the write ins of the asset if any
     """
@@ -23,7 +23,7 @@ def render_write_ins(context: Context, asset: Asset):
             render_write_in(context, write_in)
 
 
-def render_asset_description(context: Context, asset: Asset):
+def render_asset_description(context: Context, asset: AssetCard):
     """
     Renders the asset description if any
     """
@@ -32,7 +32,7 @@ def render_asset_description(context: Context, asset: Asset):
             context.asis(markdown.markdown(asset.description))
 
 
-def render_top_panel(context: Context, asset: Asset):
+def render_top_panel(context: Context, asset: AssetCard):
     """
     Renders the write-ins and description if there are any
     """
@@ -42,7 +42,7 @@ def render_top_panel(context: Context, asset: Asset):
             render_asset_description(context, asset)
 
 
-def render_asset_icon(context: Context, asset: Asset):
+def render_asset_icon(context: Context, asset: AssetCard):
     """
     Renders the asset icon, if it has one
     """
@@ -53,7 +53,7 @@ def render_asset_icon(context: Context, asset: Asset):
                     pass
 
 
-def render_top_area(context: Context, asset: Asset):
+def render_top_area(context: Context, asset: AssetCard):
     """
     Renders the top area of the asset (title, write-ins icon and description)
     """

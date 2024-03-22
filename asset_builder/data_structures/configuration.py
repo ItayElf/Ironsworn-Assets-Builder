@@ -5,7 +5,7 @@ A file that holds the configuration dataclass
 from dataclasses import dataclass, field
 from typing import Any, Dict, List
 
-from asset_builder.data_structures.asset_card.asset import Asset
+from asset_builder.data_structures.asset_card.asset import AssetCard
 
 
 @dataclass
@@ -13,7 +13,7 @@ class Configuration:
     """
     A class that represents the configuration of the program
     """
-    assets: List[Asset]
+    assets: List[AssetCard]
     settings: Dict[str, Any] = field(default_factory=dict)
 
     @classmethod
@@ -27,5 +27,6 @@ class Configuration:
                     data}"
             )
 
-        data["assets"] = [Asset.from_dict(asset) for asset in data["assets"]]
+        data["assets"] = [AssetCard.from_dict(
+            asset) for asset in data["assets"]]
         return cls(**data)

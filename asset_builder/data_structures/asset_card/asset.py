@@ -9,7 +9,7 @@ from asset_builder.data_structures.asset_card.asset_ability import AssetAbility
 
 
 @dataclass
-class Asset:
+class AssetCard:
     """
     A class that represents an asset
     """
@@ -22,7 +22,7 @@ class Asset:
     track: Optional[Union[int, List[str]]] = field(default=None)
 
     @classmethod
-    def from_dict(cls, data: Dict[str, Any]) -> "Asset":
+    def from_dict(cls, data: Dict[str, Any]) -> "AssetCard":
         """
         Takes a json object and returns an asset from it
         """

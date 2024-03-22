@@ -4,14 +4,14 @@ A file to render the body of the page
 
 from typing import List
 
-from asset_builder.data_structures.asset_card.asset import Asset
+from asset_builder.data_structures.asset_card.asset import AssetCard
 from asset_builder.render.asset_renderer.asset_back_renderer import \
     render_asset_back
 from asset_builder.render.asset_renderer.renderer import render_asset
 from asset_builder.render.context import Context
 
 
-def render_asset_group(context: Context, assets: List[Asset]):
+def render_asset_group(context: Context, assets: List[AssetCard]):
     """
     Renders a list of assets on a grid
     """
