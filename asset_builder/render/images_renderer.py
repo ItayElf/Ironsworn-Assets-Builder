@@ -7,7 +7,7 @@ import click
 from html2image import Html2Image
 from asset_builder.data_structures.asset_card.asset import AssetCard
 from asset_builder.data_structures.configuration import Configuration
-from asset_builder.render.asset_renderer.asset_back_renderer import render_asset_back
+from asset_builder.render.card_back_renderer import render_card_back
 from asset_builder.render.asset_renderer.renderer import render_asset
 from asset_builder.render.context import Context
 from asset_builder.render.head_renderer import render_head
@@ -41,7 +41,7 @@ def get_back_context(config: Configuration, asset_type: str) -> Context:
         render_head(context)
 
         with context.tag("body"):
-            render_asset_back(context, asset_type)
+            render_card_back(context, asset_type)
 
     return context
 

@@ -33,9 +33,9 @@ class AssetCard(Card):
     @override
     def render_back(self, context: Context) -> str:
         # Ugly hack to solve circular import
-        from asset_builder.render.asset_renderer.asset_back_renderer import render_asset_back  # pylint: disable=import-outside-toplevel
+        from asset_builder.render.card_back_renderer import render_card_back  # pylint: disable=import-outside-toplevel
 
-        return render_asset_back(context, self.type)
+        return render_card_back(context, self.type)
 
     @override
     @property

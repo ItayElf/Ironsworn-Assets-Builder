@@ -301,7 +301,7 @@ ul {
   justify-content: space-between;
 }
 
-.asset-back-title {
+.card-back-title {
   position: absolute;
   font-family: Simonetta;
   top: 107px;
@@ -312,13 +312,13 @@ ul {
   font-size: 2em;
 }
 
-.asset-back-title.rtl {
+.card-back-title.rtl {
   font-family: Bellefair;
   font-size: 3em;
   top: 90px;
 }
 
-.asset-back-type {
+.card-back-type {
   position: absolute;
   font-family: Simonetta;
   top: 207px;
@@ -329,7 +329,7 @@ ul {
   font-size: 3em;
 }
 
-.asset-back-type.rtl {
+.card-back-type.rtl {
   font-family: Bellefair;
   font-size: 4em;
 }
