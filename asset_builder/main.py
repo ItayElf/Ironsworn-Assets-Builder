@@ -10,7 +10,7 @@ import webbrowser
 import click
 
 from asset_builder.data_structures.configuration import Configuration
-from asset_builder.render.body_renderer import render_asset_group
+from asset_builder.render.body_renderer import render_card_group
 from asset_builder.render.context import Context
 from asset_builder.render.head_renderer import render_head
 from asset_builder.render.images_renderer import render_images
@@ -69,7 +69,7 @@ def render_html(config: Configuration, output_file: str, is_watch=False):
         render_head(context)
 
         with context.tag("body"):
-            render_asset_group(context, config.cards)
+            render_card_group(context, config.cards)
             if context.is_watch:
                 render_watch_script(context)
 

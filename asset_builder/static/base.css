@@ -72,7 +72,7 @@ ul {
   padding-inline-start: 1.3em;
 }
 
-.assets-group {
+.cards-group {
   max-width: calc(400px * 4);
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(375px, 1fr));
@@ -82,7 +82,7 @@ ul {
   -webkit-print-color-adjust: exact;
 }
 
-.assets-group.rtl {
+.cards-group.rtl {
   direction: rtl;
 }
 
