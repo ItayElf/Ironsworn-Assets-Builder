@@ -1,0 +1,32 @@
+"""
+A file for the generic card class
+"""
+
+import abc
+from dataclasses import dataclass
+
+from asset_builder.data_structures.card_types import CardType
+
+
+@dataclass
+class Card():
+    """
+    An abstract class that represents a generic card that can be rendered
+    """
+    card_type: CardType
+
+    def __post_init__(self):
+        if self.card_type is str:
+            self.card_type = CardType(self.card_type)
+
+    @abc.abstractmethod
+    def render(self) -> str:
+        """
+        Renders the card and returns the HTML representation
+        """
+
+    @abc.abstractmethod
+    def render_back(self) -> str:
+        """
+        Renders the back of the card and returns the HTML representation
+        """
