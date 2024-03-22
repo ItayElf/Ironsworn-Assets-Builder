@@ -7,19 +7,19 @@ AssetBuilder is a cli that allows creating custom asset cards.
 To start, install the package locally with:
 
 ```bash
-pip install -e .
+pip install .
 ```
 
 to watch the changes as you edit the config file, use:
 
 ```bash
-assetBuilder watch ./config.json
+assetBuilder watch ./example.json
 ```
 
 to build a final html file, use:
 
 ```bash
-assetBuilder build ./config.json
+assetBuilder build ./example.json
 ```
 
 ### Credits
