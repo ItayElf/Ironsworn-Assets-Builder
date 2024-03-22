@@ -27,5 +27,5 @@ class Configuration:
                     data}"
             )
 
-        data["assets"] = [Asset.from_json(asset) for asset in data["assets"]]
+        data["assets"] = [Asset.from_dict(asset) for asset in data["assets"]]
         return cls(**data)

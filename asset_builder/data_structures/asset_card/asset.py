@@ -22,7 +22,7 @@ class Asset:
     track: Optional[Union[int, List[str]]] = field(default=None)
 
     @classmethod
-    def from_json(cls, data: Dict[str, Any]) -> "Asset":
+    def from_dict(cls, data: Dict[str, Any]) -> "Asset":
         """
         Takes a json object and returns an asset from it
         """
