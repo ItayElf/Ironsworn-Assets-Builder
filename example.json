@@ -61,6 +61,22 @@
         }
       ],
       "track": ["Lightly Armoured", "Geared For War"]
+    },
+    {
+      "card_type": "monster",
+      "name": "Broken",
+      "rank": "Troublesome",
+      "type": "Ironlander",
+      "features": [
+        "Crazed eyes",
+        "Painted skin",
+        "Feral screams",
+        "Scavenged clothing and weapons"
+      ],
+      "drives": ["Show my power", "Share my pain"],
+      "tactics": ["Spring from hiding", "Ferocious attacks"],
+      "terrain": ["Any"],
+      "description": "A corrupted former ironlander"
     }
   ]
 }

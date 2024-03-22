@@ -26,7 +26,10 @@ class MonsterCard(Card):
 
     @override
     def render(self, context: Context) -> str:
-        return ""
+        # Ugly hack to solve circular import
+        from asset_builder.render.monster_renderer.renderer import render_monster  # pylint: disable=import-outside-toplevel
+
+        return render_monster(context, self)
 
     @override
     def render_back(self, context: Context) -> str:

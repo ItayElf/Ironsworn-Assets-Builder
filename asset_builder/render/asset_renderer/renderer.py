@@ -13,7 +13,7 @@ def render_asset(context: Context, asset: AssetCard):
     """
     Renders an asset
     """
-    with context.tag("div", ("class", "asset-background")):
+    with context.tag("div", ("class", "card-background")):
         with context.tag("div"):
             render_top_area(context, asset)
             render_asset_abilities(context, asset)
