@@ -69,7 +69,7 @@ def render_html(config: Configuration, output_file: str, is_watch=False):
         render_head(context)
 
         with context.tag("body"):
-            render_asset_group(context, config.assets)
+            render_asset_group(context, config.cards)
             if context.is_watch:
                 render_watch_script(context)
 

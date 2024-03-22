@@ -5,7 +5,8 @@ A file that holds the configuration dataclass
 from dataclasses import dataclass, field
 from typing import Any, Dict, List
 
-from asset_builder.data_structures.asset_card.asset import AssetCard
+from asset_builder.data_structures.card import Card
+from asset_builder.data_structures.card_factory import get_card_by_type
 
 
 @dataclass
@@ -13,7 +14,7 @@ class Configuration:
     """
     A class that represents the configuration of the program
     """
-    assets: List[AssetCard]
+    cards: List[Card]
     settings: Dict[str, Any] = field(default_factory=dict)
 
     @classmethod
@@ -21,12 +22,11 @@ class Configuration:
         """
         Takes a json object and returns a configuration from it
         """
-        if not "assets" in data:
+        if not "cards" in data:
             raise KeyError(
-                f"Configuration data doesn't have mandatory field 'assets': {
+                f"Configuration data doesn't have mandatory field 'cards': {
                     data}"
             )
 
-        data["assets"] = [AssetCard.from_dict(
-            asset) for asset in data["assets"]]
+        data["cards"] = [get_card_by_type(card) for card in data["cards"]]
         return cls(**data)

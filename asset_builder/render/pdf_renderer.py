@@ -59,7 +59,7 @@ def render_pdf(config: Configuration, images_dir: str, output_file: str):
     """
     canvas = Canvas(output_file, pagesize=A4)
 
-    assets = sorted(config.assets, key=lambda x: (x.type, x.name))
+    assets = sorted(config.cards, key=lambda x: (x.type, x.name))
     chunks = [assets[i:i+ASSETS_IN_PAGE]
               for i in range(0, len(assets), ASSETS_IN_PAGE)]
 

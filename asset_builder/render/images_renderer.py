@@ -50,7 +50,7 @@ def render_assets_images(config: Configuration, hti: Html2Image):
     """
     Renders images for assets
     """
-    with click.progressbar(config.assets, label="Rendering assets") as progress_bar:
+    with click.progressbar(config.cards, label="Rendering assets") as progress_bar:
         for asset in progress_bar:
             context = get_asset_context(config, asset)
             hti.screenshot(
@@ -65,7 +65,7 @@ def render_assets_backs(config: Configuration, hti: Html2Image):
     """
     Renders backs for assets
     """
-    asset_types = set(asset.type for asset in config.assets)
+    asset_types = set(asset.type for asset in config.cards)
     with click.progressbar(asset_types, label="Rendering asset backs") as progress_bar:
         for asset_type in progress_bar:
             context = get_back_context(config, asset_type)
