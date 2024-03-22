@@ -33,6 +33,13 @@ class Card:
         Renders the back of the card and returns the HTML representation
         """
 
+    @property
+    @abc.abstractmethod
+    def card_back_hash(self) -> str:
+        """
+        Returns the hash used to identify unique card backs
+        """
+
     @classmethod
     def from_dict(cls, data: Dict[str, Any]) -> "Card":
         """

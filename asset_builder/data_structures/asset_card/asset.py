@@ -35,7 +35,12 @@ class AssetCard(Card):
         # Ugly hack to solve circular import
         from asset_builder.render.asset_renderer.asset_back_renderer import render_asset_back  # pylint: disable=import-outside-toplevel
 
-        return render_asset_back(context, self)
+        return render_asset_back(context, self.type)
+
+    @override
+    @property
+    def card_back_hash(self):
+        return self.type
 
     @override
     @classmethod
