@@ -5,7 +5,7 @@ A file for rendering images of assets
 
 import click
 from html2image import Html2Image
-from asset_builder.data_structures.asset import Asset
+from asset_builder.data_structures.asset_card.asset import Asset
 from asset_builder.data_structures.configuration import Configuration
 from asset_builder.render.asset_renderer.asset_back_renderer import render_asset_back
 from asset_builder.render.asset_renderer.renderer import render_asset

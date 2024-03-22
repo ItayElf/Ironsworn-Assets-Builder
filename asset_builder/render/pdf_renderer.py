@@ -6,7 +6,7 @@ from typing import List
 from reportlab.pdfgen.canvas import Canvas
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import mm
-from asset_builder.data_structures.asset import Asset
+from asset_builder.data_structures.asset_card.asset import Asset
 
 from asset_builder.data_structures.configuration import Configuration
 

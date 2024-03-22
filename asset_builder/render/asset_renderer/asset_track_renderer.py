@@ -2,7 +2,7 @@
 A file for rendering the asset track
 """
 from typing import List
-from asset_builder.data_structures.asset import Asset
+from asset_builder.data_structures.asset_card.asset import Asset
 from asset_builder.render.context import Context
 
 
@@ -16,7 +16,8 @@ def render_asset_number_track(context: Context, max_value: int):
 
     with context.tag("div", ("class", "asset-track")):
         for value in values:
-            classname = f"asset-track-value asset-track-{'number' if value >= 0 else 'empty'}"
+            classname = f"asset-track-value asset-track-{
+                'number' if value >= 0 else 'empty'}"
             with context.tag("div", ("class", classname)):
                 if value == 0:
                     context.text("0")

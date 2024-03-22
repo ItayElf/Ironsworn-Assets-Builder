@@ -2,7 +2,7 @@
 A file for rendering the top of the asset
 """
 import markdown
-from asset_builder.data_structures.asset import Asset
+from asset_builder.data_structures.asset_card.asset import Asset
 from asset_builder.render.context import Context
 
 

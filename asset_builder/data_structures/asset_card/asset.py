@@ -5,7 +5,7 @@ A file that holds the asset dataclass
 from dataclasses import dataclass, field
 from typing import Any, Dict, Optional, List, Union
 
-from asset_builder.data_structures.asset_ability import AssetAbility
+from asset_builder.data_structures.asset_card.asset_ability import AssetAbility
 
 
 @dataclass

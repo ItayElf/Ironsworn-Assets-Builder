@@ -4,7 +4,7 @@ A file to render the body of the page
 
 from typing import List
 
-from asset_builder.data_structures.asset import Asset
+from asset_builder.data_structures.asset_card.asset import Asset
 from asset_builder.render.asset_renderer.asset_back_renderer import \
     render_asset_back
 from asset_builder.render.asset_renderer.renderer import render_asset
