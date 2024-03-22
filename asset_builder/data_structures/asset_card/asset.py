@@ -7,6 +7,7 @@ from typing import Any, Dict, Optional, List, Union, override
 
 from asset_builder.data_structures.asset_card.asset_ability import AssetAbility
 from asset_builder.data_structures.card import Card
+from asset_builder.render.card_back_renderer import render_card_back
 from asset_builder.render.context import Context
 
 
@@ -32,9 +33,6 @@ class AssetCard(Card):
 
     @override
     def render_back(self, context: Context) -> str:
-        # Ugly hack to solve circular import
-        from asset_builder.render.card_back_renderer import render_card_back  # pylint: disable=import-outside-toplevel
-
         return render_card_back(context, self.type)
 
     @override

@@ -6,6 +6,7 @@ from dataclasses import dataclass, field
 from typing import List, Optional, override
 
 from asset_builder.data_structures.card import Card
+from asset_builder.render.card_back_renderer import render_card_back
 from asset_builder.render.context import Context
 
 
@@ -33,7 +34,7 @@ class MonsterCard(Card):
 
     @override
     def render_back(self, context: Context) -> str:
-        return ""
+        return render_card_back(context, self.rank)
 
     @override
     @property
