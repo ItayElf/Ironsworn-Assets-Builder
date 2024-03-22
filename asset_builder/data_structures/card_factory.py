@@ -7,6 +7,7 @@ from asset_builder.data_structures.asset_card.asset import AssetCard
 
 from asset_builder.data_structures.card import Card
 from asset_builder.data_structures.card_types import CardType
+from asset_builder.data_structures.monster_card.monster_card import MonsterCard
 
 
 def _get_card_type(card_data: Dict[str, Any]) -> CardType:
@@ -31,5 +32,7 @@ def get_card_by_type(card_data: Dict[str, Any]) -> Card:
     card_type = _get_card_type(card_data)
     if card_type == CardType.ASSET:
         return AssetCard.from_dict(card_data)
+    elif card_type == CardType.MONSTER:
+        return MonsterCard.from_dict(card_data)
 
     raise KeyError(f"No renderers for card type {card_type}")

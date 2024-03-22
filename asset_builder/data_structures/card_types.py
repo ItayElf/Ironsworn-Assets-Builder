@@ -10,3 +10,4 @@ class CardType(StrEnum):
     An enum for the different card types
     """
     ASSET = auto()
+    MONSTER = auto()
