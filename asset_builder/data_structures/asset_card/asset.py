@@ -3,13 +3,17 @@ A file that holds the asset dataclass
 """
 
 from dataclasses import dataclass, field
-from typing import Any, Dict, Optional, List, Union
+from typing import Any, Dict, Optional, List, Union, override
 
 from asset_builder.data_structures.asset_card.asset_ability import AssetAbility
+from asset_builder.data_structures.card import Card
+from asset_builder.render.asset_renderer.asset_back_renderer import render_asset_back
+from asset_builder.render.asset_renderer.renderer import render_asset
+from asset_builder.render.context import Context
 
 
 @dataclass
-class AssetCard:
+class AssetCard(Card):
     """
     A class that represents an asset
     """
@@ -21,6 +25,15 @@ class AssetCard:
     icon_path: Optional[str] = field(default=None)
     track: Optional[Union[int, List[str]]] = field(default=None)
 
+    @override
+    def render(self, context: Context) -> str:
+        return render_asset(context, self)
+
+    @override
+    def render_back(self, context: Context) -> str:
+        return render_asset_back(context, self)
+
+    @override
     @classmethod
     def from_dict(cls, data: Dict[str, Any]) -> "AssetCard":
         """
