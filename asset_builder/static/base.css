@@ -357,7 +357,7 @@ ul {
 }
 
 .monster-list {
-  margin-top: 16px;
+  margin-top: 8px;
 }
 
 .monster-list-title {
@@ -367,4 +367,5 @@ ul {
 .monster-quest-starter {
   color: rgba(0,0,0,0.75);
   font-style: italic;
+  margin-top: 8px;
 }
