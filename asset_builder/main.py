@@ -62,20 +62,6 @@ def get_output_file(file_type: str):
     raise ValueError(f"No default file for type {file_type}")
 
 
-def get_output_file(file_type: str):
-    """
-    Returns the default output file
-    """
-    if file_type == "html":
-        return str(HTML_OUTPUT_FILE)
-    if file_type == "png":
-        return str(PNG_OUTPUT_DIR)
-    if file_type == "pdf":
-        return str(PDF_OUTPUT_FILE)
-
-    raise ValueError(f"No default file for type {file_type}")
-
-
 def save_output(filename: str, content: str):
     """
     Saves the output to the output file
@@ -171,10 +157,6 @@ def build(config_file: str, output: str, file_type: str):
         render_pdf(config, str(PNG_TEMP_DIR), output)
 
     click.echo(f"Assets built successfully in \"{output}\"")
-
-
-if __name__ == "__main__":
-    cli()
 
 
 if __name__ == "__main__":
