@@ -333,3 +333,25 @@ ul {
   font-family: Bellefair;
   font-size: 4em;
 }
+
+.monster-data {
+  font-family: "PT Serif", serif;
+  font-size: 1.07em;
+  margin-left: 0.9em;
+  margin-right: 0.7em;
+}
+
+.monster-data-rtl {
+  font-family: Bellefair;
+  margin-left: 0.7em;
+  margin-right: 0.9em;
+  font-size: 1.3em;
+}
+
+.monster-list {
+  margin-top: 16px;
+}
+
+.monster-list-title {
+  font-weight: 700;
+}
