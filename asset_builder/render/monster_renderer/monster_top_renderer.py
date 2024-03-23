@@ -34,7 +34,10 @@ def render_monster_top_area(context: Context, monster: MonsterCard):
     """
     with context.tag("div", ("class", "top-area")):
         with context.tag("div", ("class", "asset-type")):
-            context.text(f"{monster.rank} {monster.type}")
+            if context.is_rtl:
+                context.text(f"{monster.type} {monster.rank}")
+            else:
+                context.text(f"{monster.rank} {monster.type}")
         with context.tag("div", ("class", "asset-name")):
             context.text(monster.name)
 
