@@ -4,6 +4,8 @@ A file for rendering the monster data
 
 from typing import List
 
+import markdown
+
 from asset_builder.data_structures.monster_card.monster_card import MonsterCard
 from asset_builder.render.context import Context
 
@@ -18,6 +20,18 @@ def _render_list(context: Context, title: str, fields: List[str]):
         context.text(" \u2022 ".join(fields))
 
 
+def _render_quest_starter(context: Context, monster: MonsterCard):
+    """
+    Renders the quest starter
+    """
+    if not monster.quest_starter:
+        return
+    with context.tag("div", ("class", "monster-quest-starter")):
+        context.asis(
+            markdown.markdown("Quest Starter: " + monster.quest_starter)
+        )
+
+
 def render_monster_data(context: Context, monster: MonsterCard):
     """
     Renders all the monster data
@@ -28,3 +42,5 @@ def render_monster_data(context: Context, monster: MonsterCard):
         _render_list(context, "Tactics", monster.tactics)
         if monster.terrain:
             _render_list(context, "Terrain", monster.terrain)
+
+        _render_quest_starter(context, monster)

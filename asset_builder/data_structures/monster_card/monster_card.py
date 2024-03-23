@@ -23,6 +23,7 @@ class MonsterCard(Card):
     tactics: List[str]
     terrain: Optional[List[str]] = field(default=None)
     description: Optional[str] = field(default=None)
+    quest_starter: Optional[str] = field(default=None)
     icon_path: Optional[str] = field(default=None)
 
     @override

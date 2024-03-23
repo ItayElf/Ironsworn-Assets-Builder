@@ -355,3 +355,8 @@ ul {
 .monster-list-title {
   font-weight: 700;
 }
+
+.monster-quest-starter {
+  color: rgba(0,0,0,0.75);
+  font-style: italic;
+}
