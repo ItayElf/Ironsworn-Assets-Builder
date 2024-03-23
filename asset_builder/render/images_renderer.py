@@ -5,18 +5,16 @@ A file for rendering images of assets
 
 import click
 from html2image import Html2Image
-from asset_builder.data_structures.asset_card.asset import AssetCard
+from asset_builder.data_structures.card import Card
 from asset_builder.data_structures.configuration import Configuration
-from asset_builder.render.card_back_renderer import render_card_back
-from asset_builder.render.asset_renderer.renderer import render_asset
 from asset_builder.render.context import Context
 from asset_builder.render.head_renderer import render_head
 
 IMAGE_CSS = "body {background: white;margin: 0;}"
-ASSET_SIZE = (375, 575)
+CARD_SIZE = (375, 575)
 
 
-def get_asset_context(config: Configuration, asset: AssetCard) -> Context:
+def get_card_context(config: Configuration, card: Card) -> Context:
     """
     Returns the context of an asset card
     """
@@ -26,12 +24,12 @@ def get_asset_context(config: Configuration, asset: AssetCard) -> Context:
         render_head(context)
 
         with context.tag("body"):
-            render_asset(context, asset)
+            card.render(context)
 
     return context
 
 
-def get_back_context(config: Configuration, asset_type: str) -> Context:
+def get_back_context(config: Configuration, card: Card) -> Context:
     """
     Returns the context of an asset back
     """
@@ -41,7 +39,7 @@ def get_back_context(config: Configuration, asset_type: str) -> Context:
         render_head(context)
 
         with context.tag("body"):
-            render_card_back(context, asset_type)
+            card.render_back(context)
 
     return context
 
@@ -50,14 +48,14 @@ def render_assets_images(config: Configuration, hti: Html2Image):
     """
     Renders images for assets
     """
-    with click.progressbar(config.cards, label="Rendering assets") as progress_bar:
-        for asset in progress_bar:
-            context = get_asset_context(config, asset)
+    with click.progressbar(config.cards, label="Rendering cards") as progress_bar:
+        for card in progress_bar:
+            context = get_card_context(config, card)
             hti.screenshot(
                 html_str=context.getvalue(),
                 css_str=IMAGE_CSS,
-                save_as=f"{asset.name}.png",
-                size=ASSET_SIZE
+                save_as=f"{card.name}.png",
+                size=CARD_SIZE
             )
 
 
@@ -65,15 +63,15 @@ def render_assets_backs(config: Configuration, hti: Html2Image):
     """
     Renders backs for assets
     """
-    asset_types = set(asset.type for asset in config.cards)
-    with click.progressbar(asset_types, label="Rendering asset backs") as progress_bar:
-        for asset_type in progress_bar:
-            context = get_back_context(config, asset_type)
+    unique_backs = {card.card_back_hash: card for card in config.cards}
+    with click.progressbar(unique_backs.values(), label="Rendering card backs") as progress_bar:
+        for card in progress_bar:
+            context = get_back_context(config, card)
             hti.screenshot(
                 html_str=context.getvalue(),
                 css_str=IMAGE_CSS,
-                save_as=f"{asset_type}.png",
-                size=ASSET_SIZE
+                save_as=f"{card.card_back_hash}.png",
+                size=CARD_SIZE
             )
 
 
@@ -81,7 +79,7 @@ def render_images(config: Configuration, output_dir: str):
     """
     Saves assets as images
     """
-    hti = Html2Image(output_path=output_dir)
+    hti = Html2Image(output_path=output_dir, disable_logging=True)
 
     render_assets_images(config, hti)
     render_assets_backs(config, hti)

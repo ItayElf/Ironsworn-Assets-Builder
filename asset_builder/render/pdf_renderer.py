@@ -7,11 +7,12 @@ from reportlab.pdfgen.canvas import Canvas
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import mm
 from asset_builder.data_structures.asset_card.asset import AssetCard
+from asset_builder.data_structures.card import Card
 
 from asset_builder.data_structures.configuration import Configuration
 
-ASSETS_IN_PAGE = 9
-ASSET_SIZE = (61.7 * mm, 94.5 * mm)
+CARDS_IN_PAGE = 9
+CARD_SIZE = (61.7 * mm, 94.5 * mm)
 
 POSITIONS = [
     (12.4*mm, 196.8*mm),
@@ -26,27 +27,27 @@ POSITIONS = [
 ]
 
 
-def render_asset_page(canvas: Canvas, assets: List[AssetCard], images_dir: str):
+def render_card_page(canvas: Canvas, cards: List[Card], images_dir: str):
     """
     Renders a page of asset cards
     """
-    for i, asset in enumerate(assets):
+    for i, card in enumerate(cards):
         canvas.drawImage(
-            pathlib.Path(images_dir, f"{asset.name}.png"),
-            *POSITIONS[i], *ASSET_SIZE,
+            pathlib.Path(images_dir, f"{card.name}.png"),
+            *POSITIONS[i], *CARD_SIZE,
             preserveAspectRatio=True
         )
     canvas.showPage()
 
 
-def render_asset_backs(canvas: Canvas, assets: List[AssetCard], images_dir: str):
+def render_card_backs(canvas: Canvas, cards: List[Card], images_dir: str):
     """
     Renders card backs
     """
-    for i, asset in enumerate(assets):
+    for i, card in enumerate(cards):
         canvas.drawImage(
-            pathlib.Path(images_dir, f"{asset.type}.png"),
-            *POSITIONS[i], *ASSET_SIZE,
+            pathlib.Path(images_dir, f"{card.card_back_hash}.png"),
+            *POSITIONS[i], *CARD_SIZE,
             preserveAspectRatio=True
         )
 
@@ -59,12 +60,12 @@ def render_pdf(config: Configuration, images_dir: str, output_file: str):
     """
     canvas = Canvas(output_file, pagesize=A4)
 
-    assets = sorted(config.cards, key=lambda x: (x.type, x.name))
-    chunks = [assets[i:i+ASSETS_IN_PAGE]
-              for i in range(0, len(assets), ASSETS_IN_PAGE)]
+    cards = sorted(config.cards, key=lambda x: (x.card_back_hash, x.name))
+    chunks = [cards[i:i+CARDS_IN_PAGE]
+              for i in range(0, len(cards), CARDS_IN_PAGE)]
 
     for chunk in chunks:
-        render_asset_page(canvas, chunk, images_dir)
-        render_asset_backs(canvas, chunk, images_dir)
+        render_card_page(canvas, chunk, images_dir)
+        render_card_backs(canvas, chunk, images_dir)
 
     canvas.save()
