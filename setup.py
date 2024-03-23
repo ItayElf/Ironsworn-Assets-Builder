@@ -20,12 +20,13 @@ setup(
         "idna==3.6",
         "Markdown==3.4.4",
         "pillow==10.2.0",
+        "PyYAML==6.0.1",
         "reportlab==4.1.0",
         "requests==2.31.0",
         "urllib3==2.2.1",
         "watchdog==4.0.0",
         "websocket-client==1.7.0",
-        "yattag==1.15.1",
+        "yattag==1.15.1"
     ],
     entry_points={
         "console_scripts": ["assetBuilder=asset_builder.main:cli"]

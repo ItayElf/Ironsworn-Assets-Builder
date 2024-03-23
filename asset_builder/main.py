@@ -6,6 +6,7 @@ import logging
 import pathlib
 import tempfile
 import webbrowser
+import yaml
 
 import click
 
@@ -31,7 +32,12 @@ def load_configuration(filename: str) -> Configuration:
     """
     Returns a configuration object from a file
     """
-    data = json.loads(pathlib.Path(filename).read_text(encoding="utf-8"))
+    path = pathlib.Path(filename)
+    content = path.read_text(encoding="utf-8")
+    if path.suffix == ".json":
+        data = json.loads(content)
+    elif path.suffix == ".yaml" or path.suffix == ".yml":
+        data = yaml.load(path.open(encoding="utf-8"), yaml.FullLoader)
     return Configuration.from_json(data)
 
 

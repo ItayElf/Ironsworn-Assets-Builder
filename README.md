@@ -14,6 +14,8 @@ to watch the changes as you edit the config file, use:
 
 ```bash
 assetBuilder watch ./example.json
+# or
+assetBuilder watch ./example.yaml
 ```
 
 to build a final html file, use:
@@ -21,6 +23,8 @@ to build a final html file, use:
 ```bash
 assetBuilder build ./example.json
 ```
+
+You can also build a printable pdf or an image of each asset. Use the `--help` flag to learn more.
 
 ### Credits
 
