@@ -85,8 +85,9 @@ def cli():
 
 @cli.command()
 @click.option('--verbose', '-v', is_flag=True, help='Shows errors that might occur and are ignored')
+@click.option('--no-new-window', '-N', is_flag=True, help='Do not open a new browser, use an existing one')
 @click.argument('config_file')
-def watch(config_file: str, verbose):
+def watch(config_file: str, verbose: bool, no_new_window: bool):
     """
     Watched the changes and renders them
     """
@@ -111,7 +112,8 @@ def watch(config_file: str, verbose):
 
     render_html(config, str(HTML_TEMP_FILE), is_watch=True)
     start_server_thread()
-    webbrowser.open("http://localhost:8000/output.html")
+    if not no_new_window:
+        webbrowser.open("http://localhost:8000/output.html")
     WatchHandler(config_file, on_modify).start_watch()
 
 
