@@ -55,6 +55,13 @@ class Context:
         return self._doc.getvalue()
 
     @property
+    def is_rtl(self) -> bool:
+        """
+        Returns if the current context uses RTL
+        """
+        return self._rtl
+
+    @property
     def is_watch(self) -> bool:
         """
         Returns if the current context is watched
