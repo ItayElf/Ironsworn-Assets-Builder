@@ -27,6 +27,13 @@ PNG_OUTPUT_DIR = pathlib.Path("build", "assets")
 PNG_TEMP_DIR = pathlib.Path(tempfile.gettempdir(), "assetBuilder", "assets")
 PDF_OUTPUT_FILE = pathlib.Path("build", "output.pdf")
 
+HTML_OUTPUT_FILE = pathlib.Path("build", "output.html")
+HTML_TEMP_FILE = pathlib.Path(
+    tempfile.gettempdir(), "assetBuilder", "output.html")
+PNG_OUTPUT_DIR = pathlib.Path("build", "assets")
+PNG_TEMP_DIR = pathlib.Path(tempfile.gettempdir(), "assetBuilder", "assets")
+PDF_OUTPUT_FILE = pathlib.Path("build", "output.pdf")
+
 
 def load_configuration(filename: str) -> Configuration:
     """
@@ -39,6 +46,20 @@ def load_configuration(filename: str) -> Configuration:
     elif path.suffix == ".yaml" or path.suffix == ".yml":
         data = yaml.load(path.open(encoding="utf-8"), yaml.FullLoader)
     return Configuration.from_json(data)
+
+
+def get_output_file(file_type: str):
+    """
+    Returns the default output file
+    """
+    if file_type == "html":
+        return str(HTML_OUTPUT_FILE)
+    if file_type == "png":
+        return str(PNG_OUTPUT_DIR)
+    if file_type == "pdf":
+        return str(PDF_OUTPUT_FILE)
+
+    raise ValueError(f"No default file for type {file_type}")
 
 
 def get_output_file(file_type: str):
@@ -99,8 +120,12 @@ def watch(config_file: str, verbose: bool, no_new_window: bool):
     """
     config = load_configuration(config_file)
 
+    config = load_configuration(config_file)
+
     def on_modify(*_):
         try:
+            config = load_configuration(config_file)
+            render_html(config, str(HTML_TEMP_FILE), is_watch=True)
             config = load_configuration(config_file)
             render_html(config, str(HTML_TEMP_FILE), is_watch=True)
 
@@ -114,6 +139,7 @@ def watch(config_file: str, verbose: bool, no_new_window: bool):
             logging.debug(error)
 
     if verbose:
+        logging.basicConfig(level=logging.DEBUG)
         logging.basicConfig(level=logging.DEBUG)
 
     render_html(config, str(HTML_TEMP_FILE), is_watch=True)
@@ -145,6 +171,10 @@ def build(config_file: str, output: str, file_type: str):
         render_pdf(config, str(PNG_TEMP_DIR), output)
 
     click.echo(f"Assets built successfully in \"{output}\"")
+
+
+if __name__ == "__main__":
+    cli()
 
 
 if __name__ == "__main__":
