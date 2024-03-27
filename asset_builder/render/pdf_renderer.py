@@ -59,9 +59,10 @@ def render_card_backs(canvas: Canvas, cards: List[Card], images_dir: str):
     Renders card backs
     """
     for i, card in enumerate(cards):
+        index = 3 * (i//3) + (2 - (i % 3))
         canvas.drawImage(
             pathlib.Path(images_dir, f"{card.card_back_hash}.png"),
-            *POSITIONS[i], *CARD_SIZE,
+            *POSITIONS[index], *CARD_SIZE,
             preserveAspectRatio=True
         )
     _add_footer(canvas)
